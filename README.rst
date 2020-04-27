@@ -16,7 +16,7 @@ The Better Together Community Engine allows devlelopers to quickly model group d
 Documentation
 -------------
 
-The full documentation is at https://better-together-community-engine.readthedocs.io.
+The full documentation is at https://better-together-community-engine-django.readthedocs.io.
 
 Quickstart
 ----------
