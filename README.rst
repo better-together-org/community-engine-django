@@ -11,6 +11,10 @@ The Better Together Community Engine for Django
 .. image:: https://codecov.io/gh/better-together-solutions/community-engine-django/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/better-together-solutions/community-engine-django
 
+.. image:: https://readthedocs.org/projects/better-together-community-engine-django/badge/?version=latest
+    :target: https://better-together-community-engine-django.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 The Better Together Community Engine allows devlelopers to quickly model group dynamics in their applications.
 
 Documentation
