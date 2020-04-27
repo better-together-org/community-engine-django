@@ -1,0 +1,96 @@
+version: '3.4'
+
+volumes:
+  btce-postgres:
+  btce-redis:
+  btce-pip-packages:
+
+x-env-info:
+  &env-info
+  env_file:
+    - 'docker-env.conf'
+
+x-app-shared:
+  &app-shared
+  <<: *env-info
+  image: btce/btce-app:latest
+  volumes:
+    - .:/btce
+    - btce-pip-packages:/usr/local/lib/python3.8/site-packages
+  depends_on:
+    - postgres
+    - redis
+
+services:
+
+  postgres:
+    <<: *env-info
+    image: postgres:11
+    container_name: btce-postgres
+    volumes:
+      - btce-postgres:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+  redis:
+    image: redis:alpine
+    container_name: btce-redis
+    volumes:
+      - btce-redis:/data
+
+  celery:
+    <<: *app-shared
+    container_name: btce-celery
+    build: .
+    command: celery -A btce worker -l info
+    depends_on:
+      - app
+
+  app:
+    <<: *app-shared
+    container_name: btce-app
+    build: .
+    command: /bin/sh -c /btce/entrypoint.sh
+    stdin_open: true
+    tty: true
+    ports:
+      - "8000:8000"
+    links:
+      - selenium
+
+  selenium:
+    image: selenium/standalone-firefox-debug
+    container_name: btce-selenium
+    ports:
+      - "4444:4444"
+      - "5900:5900"
+
+  # selenium_hub:
+  #   container_name: selenium_hub
+  #   image: selenium/hub
+  #   ports:
+  #     - "4444:4444"
+  #   # depends_on:
+  #   #   - web
+
+  # selenium_chrome:
+  #   container_name: selenium_chrome
+  #   image: selenium/node-chrome-debug
+  #   environment:
+  #     - HUB_PORT_4444_TCP_ADDR=selenium_hub
+  #     - HUB_PORT_4444_TCP_PORT=4444
+  #   ports:
+  #     - "5900:5900"
+  #   depends_on:
+  #     - selenium_hub
+
+  # selenium_firefox:
+  #   container_name: selenium_firefox
+  #   image: selenium/node-firefox-debug
+  #   environment:
+  #     - HUB_PORT_4444_TCP_ADDR=selenium_hub
+  #     - HUB_PORT_4444_TCP_PORT=4444
+  #   ports:
+  #     - "5901:5900"
+  #   depends_on:
+  #     - selenium_hub
