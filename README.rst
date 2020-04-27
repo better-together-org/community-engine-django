@@ -1,5 +1,5 @@
 =============================
-better_together_community_engine
+The Better Together Community Engine for Django
 =============================
 
 .. image:: https://badge.fury.io/py/better-together-community-engine.svg
