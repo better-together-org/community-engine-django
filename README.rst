@@ -5,11 +5,11 @@ better_together_community_engine
 .. image:: https://badge.fury.io/py/better-together-community-engine.svg
     :target: https://badge.fury.io/py/better-together-community-engine
 
-.. image:: https://travis-ci.org/rsmithlal/better-together-community-engine.svg?branch=master
-    :target: https://travis-ci.org/rsmithlal/better-together-community-engine
+.. image:: https://travis-ci.com/github/better-together-solutions/community-engine-django.svg?branch=master
+    :target: https://travis-ci.com/github/better-together-solutions/community-engine-django
 
-.. image:: https://codecov.io/gh/rsmithlal/better-together-community-engine/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/rsmithlal/better-together-community-engine
+.. image:: https://codecov.io/gh/better-together-solutions/community-engine-django/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/better-together-solutions/community-engine-django
 
 The Better Together Community Engine allows devlelopers to quickly model group dynamics in their applications.
 
