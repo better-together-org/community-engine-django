@@ -5,8 +5,8 @@ The Better Together Community Engine for Django
 .. image:: https://badge.fury.io/py/better-together-community-engine.svg
     :target: https://badge.fury.io/py/better-together-community-engine
 
-.. image:: https://travis-ci.com/github/better-together-solutions/community-engine-django.svg?branch=master
-    :target: https://travis-ci.com/github/better-together-solutions/community-engine-django
+.. image:: https://travis-ci.com/better-together-solutions/community-engine-django.svg?branch=master
+    :target: https://travis-ci.com/better-together-solutions/community-engine-django
 
 .. image:: https://codecov.io/gh/better-together-solutions/community-engine-django/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/better-together-solutions/community-engine-django
