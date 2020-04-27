@@ -45,31 +45,30 @@ readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
-    name='better-together-community-engine',
+    name='better-together-community-engine-django',
     version=version,
     description="""The Better Together Community Engine allows devlelopers to quickly model group dynamics in their applications.""",
     long_description=readme + '\n\n' + history,
     author='Robert JJ Smith',
     author_email='rob@bettertogethersolutions.com',
-    url='https://github.com/rsmithlal/better-together-community-engine',
+    url='https://github.com/better-together-solutions/better-together-community-engine-django',
     packages=[
         'better_together_community_engine',
     ],
     include_package_data=True,
     install_requires=["django-model-utils>=2.0",],
-    license="MIT",
+    license="GNU LGPLv3",
     zip_safe=False,
     keywords='better-together-community-engine',
     classifiers=[
         'Development Status :: 3 - Alpha',
         'Framework :: Django :: 2.1',
         'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
+        'License :: OSI Approved :: GNU LGPLv3 License',
         'Natural Language :: English',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
     ],
 )
