@@ -79,7 +79,7 @@ DATABASES = {
     'default': dj_database_url.parse(
         os.environ.get(
             'DATABASE_URL',
-            default="postgres://postgres:@db:5432/postgres"
+            default="postgres://postgres:@postgres:5432/postgres"
         )
     ),
 }
