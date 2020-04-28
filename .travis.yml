@@ -6,7 +6,7 @@ os: linux
 
 dist: xenial
 
-addons:
+services:
   postgresql: "11"
 
 jobs:
