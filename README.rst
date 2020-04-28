@@ -27,7 +27,7 @@ Quickstart
 
 Install better_together::
 
-    pip install better-together-community-engine
+    pip install better-together-community-engine-django
 
 Add it to your `INSTALLED_APPS`:
 
@@ -49,7 +49,7 @@ Add better_together's URL patterns:
         url(
             r'^',
             include(
-                'better_together.urls',
+                'better_together_urls',
                 namespace='better_together'
             )
         ),
