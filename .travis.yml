@@ -7,7 +7,7 @@ os: linux
 dist: xenial
 
 services:
-  postgresql: "11"
+  - postgresql
 
 jobs:
   fast_finish: true
