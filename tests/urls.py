@@ -17,8 +17,8 @@ urlpatterns = [
     url(
         r'^',
         include(
-            'better_together_community_engine.urls',
-            namespace='better_together_community_engine'
+            'better_together.urls',
+            namespace='better_together'
         )
     ),
 

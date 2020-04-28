@@ -5,7 +5,7 @@ from rest_framework import routers
 from . import views
 
 
-app_name = 'better_together_community_engine'
+app_name = 'better_together'
 
 bt_router = routers.DefaultRouter(trailing_slash=False)
 bt_router.register(r'people', views.PersonViewSet)

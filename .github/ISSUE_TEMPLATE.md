@@ -1,4 +1,4 @@
-* better_together_community_engine version:
+* better_together version:
 * Django version:
 * Python version:
 * Operating System:

@@ -36,8 +36,8 @@ is open to whoever wants to implement it.
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
-better_together_community_engine could always use more documentation, whether as part of the 
-official better_together_community_engine docs, in docstrings, or even on the web in blog posts,
+better_together could always use more documentation, whether as part of the 
+official better_together docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 Submit Feedback
@@ -77,7 +77,7 @@ Ready to contribute? Here's how to set up `better-together-community-engine` for
 5. When you're done making changes, check that your changes pass flake8 and the
    tests, including testing other Python versions with tox::
 
-        $ flake8 better_together_community_engine tests
+        $ flake8 better_together tests
         $ python setup.py test
         $ tox
 
@@ -109,4 +109,4 @@ Tips
 
 To run a subset of tests::
 
-    $ python -m unittest tests.test_better_together_community_engine
+    $ python -m unittest tests.test_better_together

@@ -25,7 +25,7 @@ The full documentation is at https://better-together-community-engine-django.rea
 Quickstart
 ----------
 
-Install better_together_community_engine::
+Install better_together::
 
     pip install better-together-community-engine
 
@@ -35,20 +35,24 @@ Add it to your `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'better_together_community_engine.apps.BetterTogetherCommunityEngineConfig',
-        ...
-    )
+    ) + better_together.get_core_apps()
 
-Add better_together_community_engine's URL patterns:
+Add better_together's URL patterns:
 
 .. code-block:: python
 
-    from better_together_community_engine import urls as better_together_community_engine_urls
+    from better_together import urls as better_together_urls
 
 
     urlpatterns = [
         ...
-        url(r'^', include(better_together_community_engine_urls)),
+        url(
+            r'^',
+            include(
+                'better_together.urls',
+                namespace='better_together'
+            )
+        ),
         ...
     ]
 

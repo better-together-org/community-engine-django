@@ -10,10 +10,10 @@ Tests for `better-together-community-engine` models module.
 
 from django.test import TestCase
 
-from better_together_community_engine import models
+from better_together import models
 
 
-class TestBetter_together_community_engine(TestCase):
+class Testbetter_together(TestCase):
 
     def setUp(self):
         pass

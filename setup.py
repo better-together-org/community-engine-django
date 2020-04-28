@@ -11,7 +11,7 @@ except ImportError:
 
 
 def get_version(*file_paths):
-    """Retrieves the version from better_together_community_engine/__init__.py"""
+    """Retrieves the version from better_together/__init__.py"""
     filename = os.path.join(os.path.dirname(__file__), *file_paths)
     version_file = open(filename).read()
     version_match = re.search(r"^__version__ = ['\"]([^'\"]*)['\"]",
@@ -21,7 +21,7 @@ def get_version(*file_paths):
     raise RuntimeError('Unable to find version string.')
 
 
-version = get_version("better_together_community_engine", "__init__.py")
+version = get_version("better_together", "__init__.py")
 
 
 if sys.argv[-1] == 'publish':
@@ -53,7 +53,7 @@ setup(
     author_email='rob@bettertogethersolutions.com',
     url='https://github.com/better-together-solutions/better-together-community-engine-django',
     packages=[
-        'better_together_community_engine',
+        'better_together',
     ],
     include_package_data=True,
     install_requires=["django-model-utils>=2.0","rest_framework==3.11.0",],

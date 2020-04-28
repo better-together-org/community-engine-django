@@ -2,25 +2,25 @@
 Usage
 =====
 
-To use better_together_community_engine in a project, add it to your `INSTALLED_APPS`:
+To use better_together in a project, add it to your `INSTALLED_APPS`:
 
 .. code-block:: python
 
     INSTALLED_APPS = (
         ...
-        'better_together_community_engine.apps.BetterTogetherCommunityEngineConfig',
+        'better_together.apps.BetterTogetherConfig',
         ...
     )
 
-Add better_together_community_engine's URL patterns:
+Add better_together's URL patterns:
 
 .. code-block:: python
 
-    from better_together_community_engine import urls as better_together_community_engine_urls
+    from better_together import urls as better_together_urls
 
 
     urlpatterns = [
         ...
-        url(r'^', include(better_together_community_engine_urls)),
+        url(r'^', include(better_together_urls)),
         ...
     ]
