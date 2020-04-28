@@ -1,2 +1,5 @@
+Django>=2.4
 django-model-utils>=2.0
 # Additional requirements go here
+celery>=4.4
+psycopg2>=2.7,<3.0

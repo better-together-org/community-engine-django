@@ -6,5 +6,11 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('better_together_community_engine.urls', namespace='better_together_community_engine')),
+    url(
+        r'^',
+        include(
+            'better_together_community_engine.urls',
+            namespace='better_together_community_engine'
+        )
+    ),
 ]
