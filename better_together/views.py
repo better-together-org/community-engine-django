@@ -1,26 +1,19 @@
 # -*- coding: utf-8 -*-
-# from django.views.generic import (
-#     CreateView,
-#     DeleteView,
-#     DetailView,
-#     UpdateView,
-#     ListView
-# )
 
 from .models import (
     Person,
     Group,
+    Role,
     Membership,
     Invitation,
-    Role,
 )
 
 from .serializers import (
     PersonSerializer,
     GroupSerializer,
+    RoleSerializer,
     MembershipSerializer,
     InvitationSerializer,
-    RoleSerializer,
 )
 
 from rest_framework.views import APIView
@@ -33,7 +26,7 @@ class PersonViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows Persons to be viewed or edited.
     """
-    queryset = Person.objects.all().order_by('-created')
+    queryset = Person.objects.all().order_by('-created_at')
     serializer_class = PersonSerializer
     permission_classes = [permissions.IsAuthenticated]
 
@@ -47,127 +40,30 @@ class GroupViewSet(viewsets.ModelViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
 
-# class PersonCreateView(CreateView):
+class RoleViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows roles to be viewed or edited.
+    """
+    queryset = Role.objects.all()
+    serializer_class = RoleSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class MembershipViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows memberships to be viewed or edited.
+    """
+    queryset = Membership.objects.all()
+    serializer_class = MembershipSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+
+class InvitationViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows invitations to be viewed or edited.
+    """
+    queryset = Invitation.objects.all()
+    serializer_class = InvitationSerializer
+    permission_classes = [permissions.IsAuthenticated]
 
-#     model = Person
-
-
-# class PersonDeleteView(DeleteView):
-
-#     model = Person
-
-
-# class PersonDetailView(DetailView):
-
-#     model = Person
-
-
-# class PersonUpdateView(UpdateView):
-
-#     model = Person
-
-
-# class PersonListView(ListView):
-
-#     model = Person
-
-
-# class GroupCreateView(CreateView):
-
-#     model = Group
-
-
-# class GroupDeleteView(DeleteView):
-
-#     model = Group
-
-
-# class GroupDetailView(DetailView):
-
-#     model = Group
-
-
-# class GroupUpdateView(UpdateView):
-
-#     model = Group
-
-
-# class GroupListView(ListView):
-
-#     model = Group
-
-
-# class MembershipCreateView(CreateView):
-
-#     model = Membership
-
-
-# class MembershipDeleteView(DeleteView):
-
-#     model = Membership
-
-
-# class MembershipDetailView(DetailView):
-
-#     model = Membership
-
-
-# class MembershipUpdateView(UpdateView):
-
-#     model = Membership
-
-
-# class MembershipListView(ListView):
-
-#     model = Membership
-
-
-# class InvitationCreateView(CreateView):
-
-#     model = Invitation
-
-
-# class InvitationDeleteView(DeleteView):
-
-#     model = Invitation
-
-
-# class InvitationDetailView(DetailView):
-
-#     model = Invitation
-
-
-# class InvitationUpdateView(UpdateView):
-
-#     model = Invitation
-
-
-# class InvitationListView(ListView):
-
-#     model = Invitation
-
-
-# class RoleCreateView(CreateView):
-
-#     model = Role
-
-
-# class RoleDeleteView(DeleteView):
-
-#     model = Role
-
-
-# class RoleDetailView(DetailView):
-
-#     model = Role
-
-
-# class RoleUpdateView(UpdateView):
-
-#     model = Role
-
-
-# class RoleListView(ListView):
-
-#     model = Role
 
