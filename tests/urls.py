@@ -15,7 +15,7 @@ router.register(r'groups', views.GroupViewSet)
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(
-        r'^bt/v1/',
+        r'^',
         include(
             'better_together_community_engine.urls',
             namespace='better_together_community_engine'

@@ -1,135 +1,16 @@
 # -*- coding: utf-8 -*-
-from django.conf.urls import url
-from django.views.generic import TemplateView
+from django.conf.urls import url, include, re_path
+from rest_framework import routers
 
 from . import views
 
 
 app_name = 'better_together_community_engine'
+
+bt_router = routers.DefaultRouter(trailing_slash=False)
+bt_router.register(r'people', views.PersonViewSet)
+bt_router.register(r'groups', views.GroupViewSet)
+
 urlpatterns = [
-    url(
-        regex="^people/~create/$",
-        view=views.PersonCreateView.as_view(),
-        name='Person_create',
-    ),
-    url(
-        regex="^people/(?P<pk>\d+)/~delete/$",
-        view=views.PersonDeleteView.as_view(),
-        name='Person_delete',
-    ),
-    url(
-        regex="^people/(?P<pk>\d+)/$",
-        view=views.PersonDetailView.as_view(),
-        name='Person_detail',
-    ),
-    url(
-        regex="^people/(?P<pk>\d+)/~update/$",
-        view=views.PersonUpdateView.as_view(),
-        name='Person_update',
-    ),
-    url(
-        regex="^people/$",
-        view=views.PersonListView.as_view(),
-        name='Person_list',
-    ),
-	url(
-        regex="^groups/~create/$",
-        view=views.GroupCreateView.as_view(),
-        name='Group_create',
-    ),
-    url(
-        regex="^groups/(?P<pk>\d+)/~delete/$",
-        view=views.GroupDeleteView.as_view(),
-        name='Group_delete',
-    ),
-    url(
-        regex="^groups/(?P<pk>\d+)/$",
-        view=views.GroupDetailView.as_view(),
-        name='Group_detail',
-    ),
-    url(
-        regex="^groups/(?P<pk>\d+)/~update/$",
-        view=views.GroupUpdateView.as_view(),
-        name='Group_update',
-    ),
-    url(
-        regex="^groups/$",
-        view=views.GroupListView.as_view(),
-        name='Group_list',
-    ),
-	url(
-        regex="^memberships/~create/$",
-        view=views.MembershipCreateView.as_view(),
-        name='Membership_create',
-    ),
-    url(
-        regex="^memberships/(?P<pk>\d+)/~delete/$",
-        view=views.MembershipDeleteView.as_view(),
-        name='Membership_delete',
-    ),
-    url(
-        regex="^memberships/(?P<pk>\d+)/$",
-        view=views.MembershipDetailView.as_view(),
-        name='Membership_detail',
-    ),
-    url(
-        regex="^memberships/(?P<pk>\d+)/~update/$",
-        view=views.MembershipUpdateView.as_view(),
-        name='Membership_update',
-    ),
-    url(
-        regex="^memberships/$",
-        view=views.MembershipListView.as_view(),
-        name='Membership_list',
-    ),
-	url(
-        regex="^invitations/~create/$",
-        view=views.InvitationCreateView.as_view(),
-        name='Invitation_create',
-    ),
-    url(
-        regex="^invitations/(?P<pk>\d+)/~delete/$",
-        view=views.InvitationDeleteView.as_view(),
-        name='Invitation_delete',
-    ),
-    url(
-        regex="^invitations/(?P<pk>\d+)/$",
-        view=views.InvitationDetailView.as_view(),
-        name='Invitation_detail',
-    ),
-    url(
-        regex="^invitations/(?P<pk>\d+)/~update/$",
-        view=views.InvitationUpdateView.as_view(),
-        name='Invitation_update',
-    ),
-    url(
-        regex="^invitations/$",
-        view=views.InvitationListView.as_view(),
-        name='Invitation_list',
-    ),
-	url(
-        regex="^roles/~create/$",
-        view=views.RoleCreateView.as_view(),
-        name='Role_create',
-    ),
-    url(
-        regex="^roles/(?P<pk>\d+)/~delete/$",
-        view=views.RoleDeleteView.as_view(),
-        name='Role_delete',
-    ),
-    url(
-        regex="^roles/(?P<pk>\d+)/$",
-        view=views.RoleDetailView.as_view(),
-        name='Role_detail',
-    ),
-    url(
-        regex="^roles/(?P<pk>\d+)/~update/$",
-        view=views.RoleUpdateView.as_view(),
-        name='Role_update',
-    ),
-    url(
-        regex="^roles/$",
-        view=views.RoleListView.as_view(),
-        name='Role_list',
-    ),
-	]
+    url(r'^bt/v1/', include(bt_router.urls))
+]
