@@ -8,5 +8,14 @@ celery>=4.4
 psycopg2>=2.7,<3.0
 dj-database-url==0.5.0
 
+# https://github.com/SimpleJWT/django-rest-framework-simplejwt
+#djangorestframework_simplejwt==4.4.0
+
+#https://github.com/django-json-api/django-rest-framework-json-api
+djangorestframework-jsonapi==3.1.0
+
+# https://github.com/carltongibson/django-filter
+django-filter==2.2.0
+
 # for production
 gunicorn==20.0.4
