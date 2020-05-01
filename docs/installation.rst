@@ -4,9 +4,9 @@ Installation
 
 At the command line::
 
-    $ easy_install better-together-community-engine
+    $ easy_install django-better-together
 
 Or, if you have virtualenvwrapper installed::
 
-    $ mkvirtualenv better-together-community-engine
-    $ pip install better-together-community-engine
+    $ mkvirtualenv django-better-together
+    $ pip install django-better-together
