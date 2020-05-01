@@ -1,21 +1,32 @@
 from django.conf import settings
 from django.urls import include, path
-from rest_framework.routers import DefaultRouter, SimpleRouter
+from rest_framework.routers import APIRootView, DefaultRouter, SimpleRouter
 
 from . import views
 
+
+class BetterTogetherV1(APIRootView):
+    """
+    Version 1 of the Better Together API
+    """
+    pass
+
+
+class BetterTogetherApis(DefaultRouter):
+    APIRootView = BetterTogetherV1
+
 if settings.DEBUG:
-    router = DefaultRouter()
+    router = BetterTogetherApis(trailing_slash=False)
 else:
     router = SimpleRouter()
 
 router.register(r'people', views.PersonViewSet)
-# router.register(r'groups', views.GroupViewSet)
-# router.register(r'roles', views.RoleViewSet)
-# router.register(r'memberships', views.MembershipViewSet)
-# router.register(r'invitations', views.InvitationViewSet)
+router.register(r'groups', views.GroupViewSet)
+router.register(r'roles', views.RoleViewSet)
+router.register(r'memberships', views.MembershipViewSet)
+router.register(r'invitations', views.InvitationViewSet)
 
-app_name = 'api'
+app_name = 'better_together_api'
 api_urlpatterns = [
-    path('api/v1/bt/', include(router.urls))
+    path('api/bt/v1/', include(router.urls), name=app_name + '_v1')
 ]

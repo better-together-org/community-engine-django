@@ -2,7 +2,7 @@
 
 import uuid
 from django.db import models
-from .mixins import NameDescriptionMixin, SchedulableMixin
+from .mixins import NameDescriptionMixin, SchedulableMixin, SluggedMixin
 
 class BaseModel(models.Model):
     bt_id = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
@@ -13,15 +13,21 @@ class BaseModel(models.Model):
         abstract = True
 
 
-class Person(NameDescriptionMixin, BaseModel):
+class Person(SluggedMixin, NameDescriptionMixin, BaseModel):
     class Meta:
         db_table = 'better_together_people'
 
+    def slug_source_field(self):
+        return 'name'
+
+    def __str__(self):
+        return str(self.name)
+
     def get_absolute_url(self):
-        return reverse("person:detail", kwargs={"name": self.name})
+        return reverse("better_together_api:person:retrieve", kwargs={"slug": self.slug})
 
 
-class Group(NameDescriptionMixin, BaseModel):
+class Group(SluggedMixin, NameDescriptionMixin, BaseModel):
     class Meta:
         db_table = 'better_together_groups'
 

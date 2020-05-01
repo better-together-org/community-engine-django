@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-
+from .utils import unique_slug_generator
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
@@ -13,6 +13,22 @@ class SchedulableMixin(models.Model):
 
     def is_active(self):
         pass
+
+
+class SluggedMixin(models.Model):
+    slug = models.SlugField(max_length=255, blank=True, unique=True)
+
+    class Meta:
+        abstract = True
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = unique_slug_generator(self, source_model_field=self.slug_source_field(), output_model_field="slug")
+
+        super().save(*args, **kwargs)
+
+    def slug_source_field(self):
+        return 'name'
 
 
 class NameDescriptionMixin(models.Model):

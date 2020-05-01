@@ -15,18 +15,22 @@ class SchedulableSerializerMixin:
     class Meta:
         fields = ['start', 'end']
 
-class PersonSerializer(serializers.HyperlinkedModelSerializer):
+class SluggedSerializerMixin:
     class Meta:
-        model = models.Person
-        fields = BaseSerializer.Meta.fields + NameDescriptionSerializerMixin.Meta.fields + ['url']
+        fields = ['slug']
 
         extra_kwargs = {
-            "url": {"view_name": "person:detail", "lookup_field": "name"}
+            "url": { "lookup_field": "slug"}
         }
 
+class PersonSerializer(serializers.ModelSerializer):
+    class Meta(SluggedSerializerMixin.Meta):
+        model = models.Person
+        fields = BaseSerializer.Meta.fields + NameDescriptionSerializerMixin.Meta.fields + SluggedSerializerMixin.Meta.fields + ['url']
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
+
+class GroupSerializer(SluggedSerializerMixin, serializers.HyperlinkedModelSerializer):
+    class Meta(SluggedSerializerMixin.Meta):
         model = models.Group
         fields = BaseSerializer.Meta.fields + NameDescriptionSerializerMixin.Meta.fields + ['url']
 
