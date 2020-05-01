@@ -17,6 +17,9 @@ class Person(NameDescriptionMixin, BaseModel):
     class Meta:
         db_table = 'better_together_people'
 
+    def get_absolute_url(self):
+        return reverse("person:detail", kwargs={"name": self.name})
+
 
 class Group(NameDescriptionMixin, BaseModel):
     class Meta:

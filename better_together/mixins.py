@@ -16,7 +16,10 @@ class SchedulableMixin(models.Model):
 
 
 class NameDescriptionMixin(models.Model):
+    # First Name and Last Name do not cover name patterns
+    # around the globe.
     name = models.CharField(_('name'), max_length=255)
+
     description = models.CharField(_('description'), max_length=255, null=True, blank=True)
 
     class Meta:
