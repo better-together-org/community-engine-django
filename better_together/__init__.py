@@ -1,4 +1,4 @@
-__version__ = '0.1.0'
+__version__ = '0.1.1'
 
 # to be added into INSTALLED_APPS later
 CORE_APPS = [
