@@ -1,6 +1,7 @@
-
-from .models import Person, Group, Membership, Invitation, Role
 from rest_framework import serializers
+
+from better_together import models
+
 
 class BaseSerializer:
     class Meta:
@@ -14,31 +15,39 @@ class SchedulableSerializerMixin:
     class Meta:
         fields = ['start', 'end']
 
-class PersonSerializer(serializers.HyperlinkedModelSerializer):
+class SluggedSerializerMixin:
     class Meta:
-        model = Person
-        fields = BaseSerializer.Meta.fields + NameDescriptionSerializerMixin.Meta.fields + ['url']
+        fields = ['slug']
+
+        extra_kwargs = {
+            "url": { "lookup_field": "slug"}
+        }
+
+class PersonSerializer(serializers.ModelSerializer):
+    class Meta(SluggedSerializerMixin.Meta):
+        model = models.Person
+        fields = BaseSerializer.Meta.fields + NameDescriptionSerializerMixin.Meta.fields + SluggedSerializerMixin.Meta.fields + ['url']
 
 
-class GroupSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Group
+class GroupSerializer(SluggedSerializerMixin, serializers.HyperlinkedModelSerializer):
+    class Meta(SluggedSerializerMixin.Meta):
+        model = models.Group
         fields = BaseSerializer.Meta.fields + NameDescriptionSerializerMixin.Meta.fields + ['url']
 
 
 class RoleSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Role
+        model = models.Role
         fields = BaseSerializer.Meta.fields + NameDescriptionSerializerMixin.Meta.fields + ['url']
 
 
 class MembershipSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Membership
+        model = models.Membership
         fields = BaseSerializer.Meta.fields + SchedulableSerializerMixin.Meta.fields + ['url']
 
 
 class InvitationSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = Invitation
+        model = models.Invitation
         fields = BaseSerializer.Meta.fields + SchedulableSerializerMixin.Meta.fields + ['url']
