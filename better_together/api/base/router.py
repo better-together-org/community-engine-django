@@ -28,5 +28,5 @@ router.register(r'invitations', views.InvitationViewSet)
 
 app_name = 'better_together_api'
 api_urlpatterns = [
-    path('api/bt/v1/', include(router.urls), name=app_name + '_v1')
+    path('bt/api/v1/', include(router.urls), name=app_name + '_v1')
 ]
