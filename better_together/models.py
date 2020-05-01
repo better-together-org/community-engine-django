@@ -20,16 +20,13 @@ class Person(SluggedMixin, NameDescriptionMixin, BaseModel):
     def slug_source_field(self):
         return 'name'
 
-    def __str__(self):
-        return str(self.name)
-
-    def get_absolute_url(self):
-        return reverse("better_together_api:person:retrieve", kwargs={"slug": self.slug})
-
 
 class Group(SluggedMixin, NameDescriptionMixin, BaseModel):
     class Meta:
         db_table = 'better_together_groups'
+
+    def slug_source_field(self):
+        return 'name'
 
 
 class Membership(SchedulableMixin, BaseModel):
