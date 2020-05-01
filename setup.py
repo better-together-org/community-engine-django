@@ -45,7 +45,7 @@ readme = open('README.rst').read()
 history = open('HISTORY.rst').read().replace('.. :changelog:', '')
 
 setup(
-    name='better-together-community-engine-django',
+    name='django-better-together',
     version=version,
     description="""The Better Together Community Engine allows devlelopers to quickly model group dynamics in their applications.""",
     long_description=readme + '\n\n' + history,
