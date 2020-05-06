@@ -23,42 +23,9 @@ class BaseModel(models.Model):
         abstract = True
 
 
-class Joinable(models.Model):
-
-    memberships = GenericRelation(
-        'Membership',
-        content_type_field='joinable_content_type',
-        object_id_field='joinable_id',
-        related_name='memberships',
-        blank=True,
-    )
-    # members = models.ManyToManyField(
-    #     Member,
-    #     related_name='members',
-    #     through='memberships',
-    #     blank=True
-    # )
-    # JOINABLE_CONTENT_TYPES += [(self.__class__.__name__, ContentType.objects.get_for_model(self))]
-
+class Role(NameDescriptionMixin, BaseModel):
     class Meta:
-        abstract = True
-
-    def role_class(self):
-        return ContentType.objects.get_for_model(Role)
-
-    def create_membership(self, member, role) -> 'Membership':
-        joinable_type = ContentType.objects.get_for_model(self)
-        member_type = ContentType.objects.get_for_model(member)
-
-        return Membership.objects.create(
-            joinable_content_type=joinable_type,
-            joinable_id=self.pk,
-            member_content_type=member_type,
-            member_id=member.pk,
-            role_content_type=self.role_class(),
-            role_id=role.pk,
-        )
-
+        db_table = 'better_together_roles'
 
 
 class Member(models.Model):
@@ -125,6 +92,46 @@ class Membership(SchedulableMixin, BaseModel):
         ]
 
 
+class Joinable(models.Model):
+    JoinableRole = Role
+    JoinableMembership = Membership
+
+
+    memberships = GenericRelation(
+        JoinableMembership,
+        content_type_field='joinable_content_type',
+        object_id_field='joinable_id',
+        related_name='memberships',
+        blank=True,
+    )
+    # members = GenericRelation(
+    #     Member,
+    #     content_type_field='member_content_type',
+    #     object_id_field='member_id',
+    #     related_name='members',
+    #     through=JoinableMembership,
+    #     through_fields=('joinable', 'member'),
+    #     blank=True
+    # )
+    # JOINABLE_CONTENT_TYPES += [(self.__class__.__name__, ContentType.objects.get_for_model(self))]
+
+    class Meta:
+        abstract = True
+
+    def create_membership(self, member, role) -> 'Membership':
+        joinable_type = ContentType.objects.get_for_model(self)
+        member_type = ContentType.objects.get_for_model(member)
+        role_type = ContentType.objects.get_for_model(self.__class__.JoinableRole)
+
+        return self.__class__.JoinableMembership.objects.create(
+            joinable_content_type=joinable_type,
+            joinable_id=self.pk,
+            member_content_type=member_type,
+            member_id=member.pk,
+            role_content_type=role_type,
+            role_id=role.pk,
+        )
+
 
 class Person(Member, SluggedMixin, NameDescriptionMixin, BaseModel):
     class Meta:
@@ -150,8 +157,3 @@ class Group(Joinable, Member, SluggedMixin, NameDescriptionMixin, BaseModel):
 class Invitation(SchedulableMixin, BaseModel):
     class Meta:
         db_table = 'better_together_invitations'
-
-
-class Role(NameDescriptionMixin, BaseModel):
-    class Meta:
-        db_table = 'better_together_roles'
