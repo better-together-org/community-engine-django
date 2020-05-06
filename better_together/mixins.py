@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 from .utils import unique_slug_generator
+from datetime import datetime
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 
 class SchedulableMixin(models.Model):
-    start = models.DateTimeField(_('start'))
+    start = models.DateTimeField(_('start'), auto_now_add=True)
     end = models.DateTimeField(_('end'), null=True, blank=True)
 
     class Meta:
