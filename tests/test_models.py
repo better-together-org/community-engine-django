@@ -1,25 +1,24 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+from django.db import IntegrityError
+import pytest
 
-"""
-test_better-together-community-engine
-------------
+from better_together.models import Person, Group, Role, Membership
 
-Tests for `better-together-community-engine` models module.
-"""
-
-from django.test import TestCase
-
-from better_together import models
+pytestmark = pytest.mark.django_db
 
 
-class Testbetter_together(TestCase):
+def test_person_name(person: Person):
+    assert person.name == person.name
 
-    def setUp(self):
-        pass
+def test_group_create_membership(group: Group, person: Person, role: Role):
+    membership = group.create_membership(person, role)
+    assert isinstance(membership, Membership)
+    assert group.memberships.count() == 1
 
-    def test_something(self):
-        pass
+def test_group_new_membership_role(group: Group, person: Person, role: Role):
+    membership = group.create_membership(person, role)
+    assert isinstance(membership.role, Role)
 
-    def tearDown(self):
-        pass
+def test_membership_unique_index(group: Group, person: Person, role: Role):
+    membership = group.create_membership(person, role)
+    with pytest.raises(IntegrityError):
+        group.create_membership(person, role)
