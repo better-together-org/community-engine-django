@@ -2,7 +2,7 @@ django>=2.2
 django-model-utils>=2.0
 django-cors-headers==3.4.0
 djangorestframework==3.11.0
-python-dotenv==0.14.0
+python-dotenv==0.15.0
 # Additional requirements go here
 celery>=4.4
 psycopg2>=2.7,<3.0
