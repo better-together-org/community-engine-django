@@ -56,7 +56,7 @@ setup(
         'better_together',
     ],
     include_package_data=True,
-    install_requires=["django-model-utils>=2.0","djangorestframework==3.11",],
+    install_requires=["django-model-utils>=2.0","djangorestframework==3.12.2",],
     license="GNU LGPLv3",
     zip_safe=False,
     keywords='better-together-community-engine',
